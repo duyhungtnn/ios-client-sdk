@@ -8,6 +8,8 @@ public enum BKTError: Error, Equatable {
     case clientClosed(message: String)
     case unavailable(message: String)
     case apiServer(message: String)
+    case redirectRequest(message: String)
+    case payloadTooLarge(message: String)
 
     // network errors
     case timeout(message: String, error: Error, timeoutMillis: Int64)
@@ -133,6 +135,10 @@ extension BKTError : LocalizedError {
             return message
         case .unknown(message: let message, _):
             return message
+        case .redirectRequest(message: let message):
+            return message
+        case .payloadTooLarge(message: let message):
+            return message
         }
     }
 
@@ -148,7 +154,9 @@ extension BKTError : LocalizedError {
              .unavailable,
              .apiServer,
              .illegalArgument,
-             .illegalState:
+             .illegalState,
+             .redirectRequest,
+             .payloadTooLarge:
             return nil
 
         case .timeout(message: _, error: let error, _):
