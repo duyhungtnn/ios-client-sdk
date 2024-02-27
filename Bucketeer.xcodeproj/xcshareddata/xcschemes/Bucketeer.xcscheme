@@ -39,12 +39,12 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "E2E_API_ENDPOINT"
-            value = "$(E2E_API_ENDPOINT)"
+            value = "https://api-dev.bucketeer.jp"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "E2E_API_KEY"
-            value = "$(E2E_API_KEY)"
+            value = "68f36f74aed68a63c6a0de5cf2de2f343c3714c0d1be4083f8fa679a39644a7c"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

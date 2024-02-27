@@ -59,6 +59,8 @@ extension BKTError : LocalizedError {
             switch responseError {
             case .unacceptableCode(let code, let errorResponse):
                 switch code {
+                case 300..<400:
+                    self = .redirectRequest(message: errorResponse?.error.message ?? "RedirectRequest error")
                 case 400:
                     self = .badRequest(message: errorResponse?.error.message ?? "BadRequest error")
                 case 401:
@@ -67,6 +69,10 @@ extension BKTError : LocalizedError {
                     self = .forbidden(message: errorResponse?.error.message ?? "Forbidden error")
                 case 404:
                     self = .notFound(message: errorResponse?.error.message ?? "NotFound error")
+                case 408:
+                    self = .timeout(message: errorResponse?.error.message ?? "Request timeout error: 408", error: responseError, timeoutMillis: 0)
+                case 413:
+                    self = .payloadTooLarge(message: errorResponse?.error.message ?? "PayloadTooLarge error")
                 case 499:
                     self = .clientClosed(message: errorResponse?.error.message ?? "Client Closed Request error")
                 case 500:
